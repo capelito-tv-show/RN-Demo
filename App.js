@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Alert } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
 
 import AlertSample from './src/samples/Alert'
-import { WelcomeScreen } from './src/WelcomeScreen/WelcomeScreen'
+import WelcomeScreen from './src/WelcomeScreen/WelcomeScreen'
 
 import HomeScreen from './src/HomeButton/screens/HomeScreen'
 import AddScreen from './src/HomeButton/screens/AddScreen'
