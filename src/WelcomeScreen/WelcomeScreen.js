@@ -13,10 +13,9 @@ import { Button } from 'react-native-elements'
 import { SLIDE_DATA } from './SlideData'
 
 class WelcomeScreen extends React.Component {
+  //onPresssでmain navigationに移動
   onStartButtonPress = () => {
-    Alert.alert('Alert', 'The button was pressed', [{ text: 'OK' }], {
-      cancelable: false
-    })
+    this.props.navigation.navigate('main')
   }
 
   renderLastButton(index) {
