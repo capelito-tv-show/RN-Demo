@@ -13,7 +13,7 @@ import { Button } from 'react-native-elements'
 import { SLIDE_DATA } from './SlideData'
 
 class WelcomeScreen extends React.Component {
-  //onPresssでmain navigationに移動
+  //onPresssでmain tabに移動
   onStartButtonPress = () => {
     this.props.navigation.navigate('main')
   }
