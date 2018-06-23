@@ -1,5 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View, Alert } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Platform,
+  StatusBar
+} from 'react-native'
 
 import {
   createBottomTabNavigator,
@@ -23,27 +30,120 @@ export default class App extends React.Component {
   render() {
     const HomeStack = createStackNavigator({
       // ←追記部分
-      home: { screen: HomeScreen },
-      detail: { screen: DetailScreen }
+      home: {
+        screen: HomeScreen,
+        navigationOptions: {
+          ...headerNavigationOptions,
+          headerTitle: 'Treco',
+          headerBackTitle: 'Home'
+        }
+      },
+      detail: {
+        screen: DetailScreen,
+        navigationOptions: {
+          ...headerNavigationOptions,
+          headerTitle: 'Detail'
+        }
+      }
     })
+    // 1階層目以外はタブを隠す
+    HomeStack.navigationOptions = ({ navigation }) => {
+      return {
+        tabBarVisible: navigation.state.index === 0
+      }
+    }
 
     const AddStack = createStackNavigator({
       // ←追記部分
-      add: { screen: AddScreen }
+      add: {
+        screen: AddScreen,
+        navigationOptions: {
+          header: null
+        }
+      }
     })
+    // 0階層目以外(つまり全階層)はタブを隠す
+    AddStack.navigationOptions = ({ navigation }) => {
+      return {
+        tabBarVisible: navigation.state.index === -1 // ←0じゃなくて-1
+      }
+    }
 
     const ProfileStack = createStackNavigator({
       // ←追記部分
-      profile: { screen: ProfileScreen },
-      setting1: { screen: Setting1Screen },
-      setting2: { screen: Setting2Screen }
+      profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+          ...headerNavigationOptions,
+          headerTitle: 'Treco',
+          headerBackTitle: 'Profile'
+        }
+      },
+      setting1: {
+        screen: Setting1Screen,
+        navigationOptions: {
+          ...headerNavigationOptions,
+          headerTitle: 'Setting 1'
+        }
+      },
+      setting2: {
+        screen: Setting2Screen,
+        navigationOptions: {
+          ...headerNavigationOptions,
+          headerTitle: 'Setting 2'
+        }
+      }
     })
 
-    const MainTab = createBottomTabNavigator({
-      homeStack: { screen: HomeStack }, // ←変更部分
-      addStack: { screen: AddStack }, // ←変更部分
-      profileStack: { screen: ProfileStack } // ←変更部分
-    })
+    ProfileStack.navigationOptions = ({ navigation }) => {
+      return {
+        tabBarVisible: navigation.state.index === 0
+      }
+    }
+
+    const MainTab = createBottomTabNavigator(
+      {
+        homeStack: {
+          screen: HomeStack,
+          navigationOptions: {
+            tabBarIcon: ({ tintColor }) => (
+              <Image
+                style={{ height: 25, width: 25, tintColor: tintColor }}
+                source={require('./src/assets/home.png')}
+              />
+            ),
+            title: 'Home'
+          }
+        },
+        addStack: {
+          screen: AddStack,
+          navigationOptions: {
+            tabBarIcon: () => (
+              <Image
+                style={{ height: 25, width: 25, tintColor: 'deepskyblue' }}
+                source={require('./src/assets/add.png')}
+              />
+            ),
+            title: ''
+          }
+        },
+        profileStack: {
+          screen: ProfileStack,
+          navigationOptions: {
+            tabBarIcon: ({ tintColor }) => (
+              <Image
+                style={{ height: 25, width: 25, tintColor: tintColor }}
+                source={require('./src/assets/profile.png')}
+              />
+            ),
+            title: 'Profile'
+          }
+        }
+      },
+      {
+        swipeEnabled: false // Android用設定
+      }
+    )
 
     //createBottomTabNavigator({ 画面達 }, { タブに関する設定など });
     const NavigatorTab = createBottomTabNavigator(
@@ -59,10 +159,20 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.wrapper}>
+        <StatusBar barStyle="light-content" />
         <NavigatorTab />
       </View>
     )
   }
+}
+
+const headerNavigationOptions = {
+  headerStyle: {
+    backgroundColor: 'deepskyblue',
+    marginTop: Platform.OS === 'android' ? 24 : 0 //'' ? oo : xx ←もし''だったらooする。それ以外はxx
+  },
+  headerTitleStyle: { color: 'white' },
+  headerTintColor: 'white'
 }
 
 const styles = StyleSheet.create({

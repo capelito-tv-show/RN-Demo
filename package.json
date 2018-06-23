@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.0",
     "jest-expo": "~27.0.0",
-    "prettier": "1.13.5",
+    "prettier": "^1.13.5",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "expo": "^27.0.1",
+    "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-elements": "^0.19.1",
