@@ -16,6 +16,7 @@ const POOR = 'sentiment-dissatisfied'
 const POOR_COLOR = 'blue' // ← 追記部分
 const POOR_INDEX = 3
 
+//仮データ
 const allReviewsTmp = [
   {
     country: 'USA',
@@ -66,10 +67,10 @@ class HomeScreen extends React.Component {
 
     switch (this.state.selectedIndex) {
       case GREAT_INDEX:
-        reviewRank: GREAT
+        reviewRank = GREAT
         break
       case GOOD_INDEX:
-        reviewRank: GOOD
+        reviewRank = GOOD
         break
 
       case POOR_INDEX:
