@@ -12,6 +12,8 @@ import {
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation'
+import { Provider } from 'react-redux'
+import store from './src/store'
 
 import AlertSample from './src/samples/Alert'
 import WelcomeScreen from './src/WelcomeScreen/WelcomeScreen'
@@ -158,10 +160,12 @@ export default class App extends React.Component {
     )
 
     return (
-      <View style={styles.wrapper}>
-        <StatusBar barStyle="light-content" />
-        <NavigatorTab />
-      </View>
+      <Provider store={store}>
+        <View style={styles.wrapper}>
+          <StatusBar barStyle="light-content" />
+          <NavigatorTab />
+        </View>
+      </Provider>
     )
   }
 }
