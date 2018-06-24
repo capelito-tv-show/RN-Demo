@@ -7,15 +7,15 @@ import * as actions from '../../actions'
 const ALL_INDEX = 0
 
 const GREAT = 'sentiment-very-satisfied'
-const GREAT_COLOR = 'red' // ← 追記部分
+const GREAT_COLOR = 'red'
 const GREAT_INDEX = 1
 
 const GOOD = 'sentiment-satisfied'
-const GOOD_COLOR = 'orange' // ← 追記部分
+const GOOD_COLOR = 'orange'
 const GOOD_INDEX = 2
 
 const POOR = 'sentiment-dissatisfied'
-const POOR_COLOR = 'blue' // ← 追記部分
+const POOR_COLOR = 'blue'
 const POOR_INDEX = 3
 
 class HomeScreen extends React.Component {
@@ -32,6 +32,8 @@ class HomeScreen extends React.Component {
   }
 
   onListItemPress = selectedReview => {
+    this.props.selectDetailReview(selectedReview) //to actioncreator
+
     this.props.navigation.navigate('detail')
   }
 

@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
-import reducers from '../reducers' // Reducerは後ほど作ります
+import reducers from '../reducers'
 
 const store = createStore(
   // storeを作成

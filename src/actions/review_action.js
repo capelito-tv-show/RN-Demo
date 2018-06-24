@@ -1,7 +1,13 @@
-const FETCH_ALL_REVIEWS = 'fetch_all_reviews'
+import { FETCH_ALL_REVIEWS, SELECT_DETAIL_REVIEW } from './type'
 
 export const fetchAllReviews = () => {
+  // 'type':どんな情報なのかReducer側で識別するための名前
+  // 'payload':Reducerに渡す情報の中身
   return { type: FETCH_ALL_REVIEWS, payload: allReviewsTmp }
+}
+
+export const selectDetailReview = selectedReview => {
+  return { type: SELECT_DETAIL_REVIEW, payload: selectedReview }
 }
 
 const GREAT = 'sentiment-very-satisfied' // ←忘れずに
